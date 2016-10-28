@@ -6,7 +6,8 @@ var Board = React.createClass({
     return {  snakePosition: [ [ 0, 0 ], [ -1, 0 ], [ -2, 0 ], [-3, 0] ],
               direction: "",
               gameOver: false,
-              apple: [6, 6]
+              apple: [6, 6],
+              score: 0
            };
   },
   componentWillMount: function() {
@@ -58,7 +59,9 @@ var Board = React.createClass({
     if ( this.isOccupiedTile(x, y) ) {
       this.createApple();
     } else {
-      this.setState({ apple: [x,y] })
+      var score = this.state.score;
+      score = score + 1;
+      this.setState({ apple: [x,y], score: score })
     }
   },
   isOccupiedTile: function(x, y) {
@@ -94,7 +97,7 @@ var Board = React.createClass({
     var tiles = [];
     for (var i = 10; i >= -10; i--) { // i is the x-axis, row
       for (var j = -10; j <= 10; j++) { // j is the y-axis, col
-        tiles.push( <div className={ this.generateTileClass(i, j) }></div> )
+        tiles.push( <div key={i + "-" + j} className={ this.generateTileClass(i, j) }></div> )
       }
     }
     return tiles;
@@ -152,8 +155,13 @@ var Board = React.createClass({
   },
   render: function() {
     return (
-      <div id="main-board">
-        { this.makeBoard() }
+      <div id="wrapper">
+        <div id="score-board">
+          Score: { this.state.score }
+        </div>
+        <div id="main-board">
+          { this.makeBoard() }
+        </div>
       </div>
     )
   }

@@ -56,7 +56,8 @@
 	    return { snakePosition: [[0, 0], [-1, 0], [-2, 0], [-3, 0]],
 	      direction: "",
 	      gameOver: false,
-	      apple: [6, 6]
+	      apple: [6, 6],
+	      score: 0
 	    };
 	  },
 	  componentWillMount: function componentWillMount() {
@@ -112,7 +113,9 @@
 	    if (this.isOccupiedTile(x, y)) {
 	      this.createApple();
 	    } else {
-	      this.setState({ apple: [x, y] });
+	      var score = this.state.score;
+	      score = score + 1;
+	      this.setState({ apple: [x, y], score: score });
 	    }
 	  },
 	  isOccupiedTile: function isOccupiedTile(x, y) {
@@ -150,7 +153,7 @@
 	      // i is the x-axis, row
 	      for (var j = -10; j <= 10; j++) {
 	        // j is the y-axis, col
-	        tiles.push(React.createElement('div', { className: this.generateTileClass(i, j) }));
+	        tiles.push(React.createElement('div', { key: i + "-" + j, className: this.generateTileClass(i, j) }));
 	      }
 	    }
 	    return tiles;
@@ -208,8 +211,18 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { id: 'main-board' },
-	      this.makeBoard()
+	      { id: 'wrapper' },
+	      React.createElement(
+	        'div',
+	        { id: 'score-board' },
+	        'Score: ',
+	        this.state.score
+	      ),
+	      React.createElement(
+	        'div',
+	        { id: 'main-board' },
+	        this.makeBoard()
+	      )
 	    );
 	  }
 	});

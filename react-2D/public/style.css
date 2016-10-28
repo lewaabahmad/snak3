@@ -1,7 +1,11 @@
+#header {
+  text-align: center;
+}
+
 #game {
-  border: 1px solid;
   display: block;
   margin: 0 auto;
+  text-align: right;
   width: 567px;
 }
 
@@ -17,7 +21,7 @@
 }
 
 .apple {
-  background: url(http://hdwall-papers.com/data/wallpapers/22/WDF_702388.jpeg);
+  background: green;
   background-size: cover;
 }
 
