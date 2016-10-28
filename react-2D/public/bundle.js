@@ -52,16 +52,18 @@
 	var Board = React.createClass({
 	  displayName: 'Board',
 
+	  getInitialState: function getInitialState() {
+	    return { snakeHead: [0, 0],
+	      snakePosition: [[0, -1]] };
+	  },
 	  makeBoard: function makeBoard() {
 	    var tiles = [];
-	    for (var i = 0; i < 400; i++) {
-	      tiles.push(React.createElement(
-	        'div',
-	        { className: 'tile' },
-	        ' ',
-	        i,
-	        ' '
-	      ));
+	    for (var i = 10; i >= -10; i--) {
+	      // i is the x-axis, row
+	      for (var j = -10; j <= 10; j++) {
+	        // j is the y-axis, col
+	        tiles.push(React.createElement('div', { className: "tile row-" + i + " col-" + j }));
+	      }
 	    }
 	    return tiles;
 	  },
