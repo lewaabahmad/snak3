@@ -11,3 +11,16 @@
   border: 1px solid gray;
   float: left;
 }
+
+.game-over {
+  background: red;
+}
+
+.apple {
+  background: url(http://hdwall-papers.com/data/wallpapers/22/WDF_702388.jpeg);
+  background-size: cover;
+}
+
+.occupied-tile {
+  background: black;
+}
