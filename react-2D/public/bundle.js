@@ -52,11 +52,24 @@
 	var Board = React.createClass({
 	  displayName: 'Board',
 
+	  makeBoard: function makeBoard() {
+	    var tiles = [];
+	    for (var i = 0; i < 400; i++) {
+	      tiles.push(React.createElement(
+	        'div',
+	        { className: 'tile' },
+	        ' ',
+	        i,
+	        ' '
+	      ));
+	    }
+	    return tiles;
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { id: 'main-board' },
-	      'hello?'
+	      this.makeBoard()
 	    );
 	  }
 	});
